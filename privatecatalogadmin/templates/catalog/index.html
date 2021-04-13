@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	{% block title %}Catalog Admin{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+            {% for pup in puppies %}
+               <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--2-col-phone mdl-color--white mdl-color-text--white">
+                        <img style="max-width:100%;max-height:100%" src='{{ pup['imgPath'] }}'
+                             alt='image of {{ pup['name'] }}'/>
+                    </header>
+                    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card__supporting-text">
+                            <h4>{{ pup['name'] }}</h4>
+                            <p>
+                                <b>Breed(s):</b> {{pup['breeds'] | join(', ')}} <br />
+                                <b>Age:</b> {{pup['age']}} <br />
+                                <b>Weight:</b> {{pup['weight']}} <br />
+                            </p>
+                            <p>
+                                <b>Likes:</b> {{pup['likes']}} <br/>
+                                <b>Is Adopted?:</b> {{ 'Yes' if pup['isAdopted'] else 'No' }}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
